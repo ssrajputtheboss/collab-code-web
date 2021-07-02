@@ -31,36 +31,41 @@ export const Tabs = ( { visible } : TabsProps ) : React.ReactElement => {
     const [fname,setFname] = useState<string>('');
     const [sname,setSname] = useState<string>('');
     const [err,setErr] = useState<string>('');
-    const [ tabList , setTabList ] = useState<Array<string>>( state.files.map((e:FileData)=>e.fname));
-    const [ activeIndex, setActiveIndex ] = useState<number>(state.activeIndex);
+    //const [ tabList , setTabList ] = useState<Array<string>>( state.files.map((e:FileData)=>e.fname));
+    //const [ activeIndex, setActiveIndex ] = useState<number>(state.activeIndex);
+
     const create : Function = ()=>{
-        
         state.socket.emit('createfile', {
             token : state.jwt ,
             roomName : state.roomName ,
             fname : fname ,
             snippetName : (sname === '' ? undefined :sname)
         });
-        state.socket.on('createfile-res' , (data)=>{
-            console.log('createfile-res');
-            const { message , files } = data;
-            if(message === 'success'){
-                onClose();
-                setTabList(files.map((e:FileData)=>e.fname));
-                actions({
-                    type : 'setState' , 
-                    payload : {...state ,
-                            files : files ,
-                            activeIndex : files.length-1
-                        }
-                });
-            } else {
-                setErr(message);
-            }
-        });
     }
 
     if(!visible)return <></>;
+
+    const createfile = (data:any)=>{
+        const { message , files } = data;
+        if(message === 'success'){
+            onClose();
+            //setTabList(files.map((e:FileData)=>e.fname));
+            //setActiveIndex(files.length-1);
+            actions({
+                type : 'setState' , 
+                payload : {...state ,
+                        files : files ,
+                        activeIndex : files.length-1
+                    }
+            });
+        } else {
+            setErr(message);
+        }
+    }
+
+    if(!state.socket.hasListeners('createfile-res')){
+        state.socket.on('createfile-res' , createfile);
+    }
 
     return <Box
     h="12"
@@ -77,14 +82,15 @@ export const Tabs = ( { visible } : TabsProps ) : React.ReactElement => {
                     <Icon as={CgAddR} h="8" w="8" color="blue.400"/>
                 </IconButton>
             </Tooltip>   
-            {tabList.map((name : string, i:number)=>
+            {state.files.map(({fname}, i:number)=>
                 (<Tab 
                     key={i}
-                    fname={name} 
-                    isActive={activeIndex === i} 
+                    fname={fname} 
+                    isActive={state.activeIndex === i} 
                     onClick = {(e)=>{
-                        setActiveIndex(i);
-                        actions({type:'setState',payload:{...state,activeIndex:i}});
+                        //setActiveIndex(i);
+                        if(i!==state.activeIndex)
+                            actions({type:'setState',payload:{...state,activeIndex:i}});
                     }}
                 />) 
             )}

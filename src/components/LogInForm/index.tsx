@@ -43,17 +43,18 @@ export const LogInForm = ({ onLogIn } : LogInProp) :React.ReactElement => {
                 userName : username ,
                 password : pass 
             });
-            state.socket.on('create-res',(data:any)=>{
-                const {message} = data;
-                if(message === 'success'){
-                    const {jwt} = data;
-                    actions({type : 'setState' , payload : {...state , roomName : roomname , jwt : jwt}});
-                    setErrmsg('');
-                    setVisible(false);
-                    onLogIn();
-                }else
-                    setErrmsg('Server response: '+message);
-            });
+            if(!state.socket.hasListeners('create-res'))
+                state.socket.on('create-res',(data:any)=>{
+                    const {message} = data;
+                    if(message === 'success'){
+                        const {jwt} = data;
+                        actions({type : 'setState' , payload : {...state , roomName : roomname , jwt : jwt}});
+                        setErrmsg('');
+                        setVisible(false);
+                        onLogIn();
+                    }else
+                        setErrmsg('Server response: '+message);
+                });
         }else
             setErrmsg(msg);
     };
@@ -69,24 +70,26 @@ export const LogInForm = ({ onLogIn } : LogInProp) :React.ReactElement => {
                 userName : username ,
                 password : pass 
             });
-            state.socket.on('join-res',(data:any)=>{
-                const {message} = data;
-                if(message === 'success'){
-                    const {jwt , files , users} = data;
-                    setErrmsg('');
-                    setVisible(false);
-                    actions({
-                        type : 'setState' , 
-                        payload : {...state , 
-                            roomName : roomname ,
-                            jwt : jwt,
-                            files : files,
-                            users : users
-                        }});
-                    onLogIn();
-                }else
-                    setErrmsg('Server response: '+message);
-            });
+            if(!state.socket.hasListeners('join-res'))
+                state.socket.on('join-res',(data:any)=>{
+                    const {message} = data;
+                    if(message === 'success'){
+                        const {jwt , files , users} = data;
+                        setErrmsg('');
+                        setVisible(false);
+                        actions({
+                            type : 'setState' , 
+                            payload : {...state , 
+                                roomName : roomname ,
+                                jwt : jwt,
+                                files : files,
+                                users : users ,
+                                activeIndex : files.length === 0 ? -1 : 0
+                            }});
+                        onLogIn();
+                    }else
+                        setErrmsg('Server response: '+message);
+                });
         }else
             setErrmsg(msg);
     };

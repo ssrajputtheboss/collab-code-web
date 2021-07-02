@@ -16,9 +16,9 @@ import {
 import { FaSave } from 'react-icons/fa';
 
 function langByFname(name:string):string{
-    if(name.endsWith('.py')) return 'python';
-    if(name.endsWith('.java')) return 'javascript';
-    if(name.endsWith('.c')||name.endsWith('.cpp')) return 'clike';
+    if(name.endsWith('.py')) return 'x-python';
+    if(name.endsWith('.java')) return 'x-java';
+    if(name.endsWith('.c')||name.endsWith('.cpp')) return 'x-c++src';
     return 'none';
 }
 
@@ -31,25 +31,26 @@ export const CodeEditor = ({ visible } : EditorData) : React.ReactElement => {
 
     if(!visible || state.activeIndex<0)return <></>;
 
-    const mode = langByFname(state.files[state.activeIndex].fname);
+    if(!state.socket.hasListeners('updatefile-res')){
+        state.socket.on('updatefile-res',(data:any)=>{
+            const {message} = data;
+            if(message === 'success'){
+                const {fname,content} = data;
+                const updatedFiles = state.files.map((f)=>{
+                    return f.fname === fname ? {fname : fname , content : content} : f
+                });
+                actions({
+                    type : 'setState' ,
+                    payload : {
+                        ...state ,
+                        files : updatedFiles
+                    }
+                });
+            }
+        });
+    }
 
-    state.socket.on('updatefile-res',(data:any)=>{
-        console.log('response recieved');
-        const {message} = data;
-        if(message === 'success'){
-            const {fname,content} = data;
-            const updatedFiles = state.files.map((f)=>{
-                return f.fname === fname ? {fname : fname , content : content} : f
-            });
-            actions({
-                type : 'setState' ,
-                payload : {
-                    ...state ,
-                    files : updatedFiles
-                }
-            });
-        }
-    });
+    const mode = langByFname(state.files[state.activeIndex].fname);
 
     return <Box
     h="full"
@@ -72,7 +73,6 @@ export const CodeEditor = ({ visible } : EditorData) : React.ReactElement => {
         <IconButton 
         aria-label="save-button"
         onClick={()=>{
-            console.log('update emitted');
             state.socket.emit('updatefile' , {
                 token : state.jwt ,
                 roomName : state.roomName ,

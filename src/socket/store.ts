@@ -2,7 +2,7 @@ import { useState } from "react"
 import { io } from "socket.io-client";
 import { GlobalState } from "../models";
 
-export const HOST = 'localhost:4000/';
+export const HOST = 'localhost:4000';
 
 export const useGlobalStore = () => {
     const [state , setState] = useState<GlobalState>({
