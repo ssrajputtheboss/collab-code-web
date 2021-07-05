@@ -90,7 +90,7 @@ function join(){
 
 function hideLogin(){
     document.getElementById('login').style.display = 'none'
-    document.getElementById('home').style.display = 'block'
+    document.getElementById('home').style.display = 'flex'
 }
 
 function showLogin(){
@@ -100,6 +100,7 @@ function showLogin(){
 
 function showEditor(){
     document.getElementById('editor').style.display = 'block'
+    editor.refresh()
 }
 
 function hideEditor(){
