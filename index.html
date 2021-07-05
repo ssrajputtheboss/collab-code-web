@@ -16,25 +16,25 @@
     <script src="js/handle.js"></script>
     <script src="js/socketEvents.js"></script>
     <script src="js/utils.js"></script>
-    <title>Collab&lt;Code/&gt;</title>
+    <title >Collab&lt;Code/&gt;</title>
 </head>
 <body class="h-screen bg-gray-900">
-    <header class="text-white items-center text-center justify-end text-4xl h-20 border-2 border-black">
+    <header class="text-white underline font-bold items-center text-center justify-end text-4xl h-20 border-b-4 border-white-900">
         Collab&lt;Code/&gt;
     </header>
     <!--login-->
     <div class="w-full h-full flex justify-center items-center" id="login" style="display: flex;">
-        <div style="max-width: 400px;height: fit-content;" class="border-2 p-4">
-            <input class="m-2 h-10 text-white w-full bg-gray-900" type="text" id="roomname" placeholder="Roomname" />
-            <input class="m-2 h-10 text-white w-full bg-gray-900" type="text" id="username" placeholder="Username" />
-            <input class="m-2 h-10 text-white w-full bg-gray-900" type="text" id="token" placeholder="Token" />
-            <input class="m-2 h-10 text-white w-full bg-gray-900" type="password" id="password" placeholder="Password" />
+        <div style="max-width: 400px;height: fit-content;" class="z-50 border-4 border-grey-500 p-4 shadow-2xl bg-blue-900 rounded">
+            <input class="border-4 rounded border-yellow-400 m-2 h-12 p-2 text-white w-full bg-gray-900" type="text" id="roomname" placeholder="Roomname" />
+            <input class="border-4 rounded border-yellow-400 m-2 h-12 p-2 text-white w-full bg-gray-900" type="text" id="username" placeholder="Username" />
+            <input class="border-4 rounded border-yellow-400 m-2 h-12 p-2 text-white w-full bg-gray-900" type="text" id="token" placeholder="Token" />
+            <input class="border-4 rounded border-yellow-400 m-2 h-12 p-2 text-white w-full bg-gray-900" type="password" id="password" placeholder="Password" />
             <label id="err" class="text-red-500"></label>
             <div class="w-full flex justify-around items-center">
-                <button onclick="login()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button onclick="login()" style="border-color: green;" class="border-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Create
                 </button>
-                <button onclick="join()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <button onclick="join()" style="border-color: green;" class="border-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                     Join
                 </button>
             </div>
@@ -49,10 +49,10 @@
                 </svg>
             </button>
         </div>
-        <div style="display: none;" id="createfile" class="z-20 fixed w-full h-full flex justify-center items-center">
-            <div style="max-width: 450px;height: fit-content;" class="bg-green-900 border-2 p-4 flex flex-col items-end rounded">
-                <input class="m-2 h-10 text-white w-full bg-gray-900" type="text" id="fname" placeholder="FileName" />
-                <input class="m-2 h-10 text-white w-full bg-gray-900" type="text" id="sname" placeholder="SnippetName" />
+        <div style="display: none;" id="createfile" class="mt-0 fixed w-full h-full flex justify-center items-center">
+            <div style="max-width: 450px;height: fit-content;" class="z-50 border-4 border-grey-500 p-4 shadow-2xl bg-blue-900 rounded flex flex-col items-start">
+                <input class="border-4 rounded border-yellow-400 m-2 h-10 text-white w-full bg-gray-900" type="text" id="fname" placeholder="FileName" />
+                <input class="border-4 rounded border-yellow-400 m-2 h-10 text-white w-full bg-gray-900" type="text" id="sname" placeholder="SnippetName" />
                 <div class="w-full flex justify-around items-center">
                     <button onclick="createFile()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Create

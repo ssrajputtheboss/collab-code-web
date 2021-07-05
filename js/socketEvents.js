@@ -17,6 +17,8 @@ function setListners(){
     socket.on('createfile-res',(data)=>{
         const { message , files } = data
         if(message === 'success'){
+            if(activeIndex>=0)
+                updateFile()
             fileList = files
             if(!isEditorOpen){
                 isEditorOpen=true
@@ -24,13 +26,12 @@ function setListners(){
             }
             removeAllTabs()
             setTabs()
-            changeTab(files.length-1)
+            changeTab(files.length-1,false)
         }
     })
     socket.on('forward-res',(data)=>{
         const {message} = data
         if(message === 'success'){
-            console.log('recieved')
             const {fname,change} = data
             if(fileList.findIndex(f=>f.fname===fname) === activeIndex){
                 if(change.origin.includes("undo") ||change.origin.includes("delete") || change.origin.includes("paste")){

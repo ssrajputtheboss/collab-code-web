@@ -1,10 +1,10 @@
 function addTab(name,index){
     let parent = document.getElementById('tabs')
     let tab = document.createElement('div')
-    tab.onclick = ()=>changeTab(index)
+    tab.onclick = ()=>changeTab(index,true)
     tab.setAttribute('id','tab'+index)
     tab.style.width='fit-content'
-    tab.className="flex flex-row justify-between items-center p-2" + index===activeIndex?' bg-blue-100':' bg-blue-900'
+    tab.className="flex flex-row justify-between items-center p-2" + index===activeIndex?' bg-blue-100':' bg-indigo-300'
     let title = document.createElement('p')
     title.className="text-white text-xl"
     title.innerHTML=name
@@ -28,7 +28,7 @@ function addTab(name,index){
 }
 
 function disableTab(index){
-    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-blue-900'
+    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
 }
 
 function enableTab(index){
@@ -41,10 +41,11 @@ function setTabs(){
     })
 }
 
-function changeTab(i){
+function changeTab(i,update){
     if(i === activeIndex)return;
     if(activeIndex>=0){
-        //updateFile()
+        if(update)
+            updateFile()
         disableTab(activeIndex)
     }
     activeIndex=i
