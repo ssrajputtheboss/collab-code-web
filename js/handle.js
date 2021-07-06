@@ -115,6 +115,16 @@ function hideModal(){
     document.getElementById('createfile').style.display= 'none'
 }
 
+function hideCodeRunnerModal(){
+    document.getElementById('runner').style.display = 'none'  
+}
+
+function showCodeRunnerModal(){
+    document.getElementById('file-to-run').innerHTML = fileList[activeIndex].fname
+    document.getElementById('stdout').value = lastOutput
+    document.getElementById('runner').style.display = 'flex'
+}
+
 function createFile(){
     const sname = document.getElementById('sname').value
     const fname = document.getElementById('fname').value
@@ -134,5 +144,14 @@ function updateFile(){
         roomName : roomname ,
         fname : fileList[activeIndex].fname ,
         content : editor.getValue()
+    })
+}
+
+function runCode(){
+    socket.emit('run' , {
+        token : token ,
+        roomName : roomname ,
+        fname : fileList[activeIndex].fname,
+        input : document.getElementById('stdin').value 
     })
 }
