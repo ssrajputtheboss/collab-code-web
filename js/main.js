@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:4004'//'https://majestic-voyageurs-43922.herokuapp.com/'
+const HOST = 'https://collab-code-api.herokuapp.com/'
 let socket = io(HOST)
 let fileList=[]
 let activeIndex=-1

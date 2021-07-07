@@ -47,7 +47,7 @@ function setListners(){
             const {result} = data 
             const code = result.exitCode
             if(code!==null){
-                const output=result.stdout
+                const output=result.stdout+result.stderr
                 lastOutput = output
                 document.getElementById('stdout').value = output
                 document.getElementById('exit-code').innerHTML = `process exited with exit code ${code}`
@@ -57,6 +57,9 @@ function setListners(){
                 document.getElementById('stdout').value = output
                 document.getElementById('exit-code').innerHTML = `process exited with error or timeout ${result.stderr}`
             }
+        }else{
+            document.getElementById('exit-code').innerHTML = message
+            document.getElementById('stdout').value =''
         }
     })
 }
