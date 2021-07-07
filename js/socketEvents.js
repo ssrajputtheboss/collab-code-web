@@ -6,7 +6,7 @@ function setListners(){
     socket.on('updatefile-res',(data)=>{
         const {message} = data
         if(message === 'success'){
-            const {fname,content} = data;
+            const {fname,content} = data
             if(fileList.findIndex(f=>f.fname===fname) === activeIndex)
                 editor.setValue(content)
             fileList = fileList.map((f)=>{
@@ -39,6 +39,27 @@ function setListners(){
                 }
                 editor.replaceRange(change.text.join('\n'),change.from,change.to,'replaceRange')
             }
+        }
+    })
+    socket.on('run-res',(data)=>{
+        const {message} = data 
+        if(message === 'success'){
+            const {result} = data 
+            const code = result.exitCode
+            if(code!==null){
+                const output=result.stdout+result.stderr
+                lastOutput = output
+                document.getElementById('stdout').value = output
+                document.getElementById('exit-code').innerHTML = `process exited with exit code ${code}`
+            }else{
+                const output=result.stdout
+                lastOutput = output
+                document.getElementById('stdout').value = output
+                document.getElementById('exit-code').innerHTML = `process exited with error or timeout ${result.stderr}`
+            }
+        }else{
+            document.getElementById('exit-code').innerHTML = message
+            document.getElementById('stdout').value =''
         }
     })
 }

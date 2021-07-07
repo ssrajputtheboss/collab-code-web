@@ -41,6 +41,29 @@
             </div>
         </div>
     </div>
+    <!--runner-->
+    <div id="runner" style="z-index: 1000;top: 0%;display: none;" class="h-full w-full fixed flex flex-col justify-center items-center m-0 shadow-2xl">
+        <div class="p-10 flex flex-col justify-between items-start h-full w-full m-10 bg-black rounded-2xl">
+            <div class="w-full h-16 flex justify-between p-4">
+                <p class="text-xl text-white">Run Code</p>
+                <button type="button" onclick="hideCodeRunnerModal()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <label class="text-white text-md">File to be executed:</label>
+            <p class="text-white text-sm" id="file-to-run"></p>
+            <button onclick="runCode()" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                Run
+            </button>
+            <label class="text-white text-md" >Input</label>
+            <textarea class="w-full text-white h-48 p-4" id="stdin"></textarea>
+            <label class="text-white text-md" >Output</label>
+            <p class="text-white text-sm" id="exit-code"></p>
+            <textarea class="w-full text-white h-48 p-4" id="stdout" disabled></textarea>
+        </div>
+    </div>
     <!--home-->
     <div id="home" class="flex flex-col justify-start h-full w-full" style="display: none;">
         <div id="tabs" class="flex justify-start items-center h-16 overflow-x-scroll">
@@ -50,7 +73,7 @@
                 </svg>
             </button>
         </div>
-        <div style="display: none;" id="createfile" class="z-10 mt-0 fixed w-full h-full flex justify-center items-center">
+        <div style="display: none;top:0%;" id="createfile" class="z-10 mt-0 fixed w-full h-full flex justify-center items-center">
             <div style="max-width: 450px;height: fit-content;" class="z-50 border-4 border-blue-900 p-4 shadow-2xl bg-blue-900 rounded flex flex-col items-start">
                 <input class="border-4 p-2 rounded border-yellow-400 m-2 h-12 text-white w-full bg-gray-900" type="text" id="fname" placeholder="FileName" />
                 <input class="border-4 p-2 rounded border-yellow-400 m-2 h-12 text-white w-full bg-gray-900" type="text" id="sname" placeholder="SnippetName" />
@@ -68,6 +91,7 @@
             <textarea id="codeeditor">
             </textarea>
             <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-2 border-white-900 rounded" onclick="updateFile()">Save</button>
+            <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-2 border-white-900 rounded" onclick="showCodeRunnerModal()">Execute</button>
         </div>
     </div>
     <script>
