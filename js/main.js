@@ -19,3 +19,13 @@ function log(){
         newFile:newFile
     })
 }
+
+window.onbeforeunload = function(e){
+    if(!roomname)return
+    const lv = confirm('reloading will bring you to login page , are you sure to leave?')
+    if(lv){
+        leave()
+    }else{
+        e.preventDefault()
+    }
+}

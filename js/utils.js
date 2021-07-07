@@ -6,7 +6,7 @@ function addTab(name,index){
     tab.style.width='fit-content'
     tab.className="flex flex-row justify-between items-center p-2" + index===activeIndex?' bg-blue-100':' bg-indigo-300'
     let title = document.createElement('p')
-    title.className="text-white text-xl"
+    title.className="text-blue-900 text-xl"
     title.innerHTML=name
     let button = document.createElement('button')
     button.className = 'p-2 rounded'
@@ -27,6 +27,29 @@ function addTab(name,index){
     parent.appendChild(tab)
 }
 
+function createUserList(){
+    userList.forEach((e,i)=>{
+        let parent = document.getElementById('user-list')
+        let p = document.createElement('p')
+        p.setAttribute('id','user'+i)
+        p.innerHTML=e 
+        p.className='p-2 text-blue-500 w-full'
+        parent.appendChild(p)
+    })
+}
+
+function clearUserList(){
+    let i=0
+    while(true){
+        try{
+            document.getElementById('user'+i).remove()
+            ++i
+        }catch(err){
+            break
+        }
+    }
+}
+
 function disableTab(index){
     document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
 }
@@ -45,7 +68,7 @@ function changeTab(i,update){
     if(i === activeIndex)return;
     if(activeIndex>=0){
         if(update)
-            updateFile()
+            //updateFile()
         disableTab(activeIndex)
     }
     activeIndex=i

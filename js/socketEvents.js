@@ -2,6 +2,8 @@ function setListners(){
     socket.on('userlist',(data)=>{
         const {users} = data
         userList = users
+        clearUserList()
+        createUserList()
     })
     socket.on('updatefile-res',(data)=>{
         const {message} = data
@@ -61,5 +63,16 @@ function setListners(){
             document.getElementById('exit-code').innerHTML = message
             document.getElementById('stdout').value =''
         }
+    })
+
+    socket.on('leave-res',async(data)=>{
+        const {message}=data
+        if(message === 'success'){
+            window.open('/','_self')
+        }
+    })
+
+    socket.on('delete-res',(data)=>{
+        console.log(data)
     })
 }

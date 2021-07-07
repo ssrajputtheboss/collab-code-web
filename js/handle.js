@@ -38,6 +38,7 @@ function login(){
                 hideLogin()
                 hideEditor()
                 setListners()
+                showOptions()
             }else
                 document.getElementById('err').innerHTML='Server response: '+message
         })
@@ -79,6 +80,7 @@ function join(){
                     showEditor()
                 }
                 hideLogin()
+                showOptions()
                 setListners()
             }else
             document.getElementById('err').innerHTML='Server response: '+message
@@ -86,6 +88,13 @@ function join(){
     }else{
         document.getElementById('err').innerHTML = msg
     }
+}
+
+function leave(){
+    socket.emit('leave' , {
+        roomName : roomname,
+        token : token
+    })
 }
 
 function hideLogin(){
@@ -123,6 +132,28 @@ function showCodeRunnerModal(){
     document.getElementById('file-to-run').innerHTML = fileList[activeIndex].fname
     document.getElementById('stdout').value = lastOutput
     document.getElementById('runner').style.display = 'flex'
+}
+
+function showOptions(){
+    document.getElementById('options').style.display = 'block'
+}
+
+function showUserList(){
+    document.getElementById('user-list').style.display='flex'
+    document.getElementById('leave-confirm').style.display='none'
+}
+
+function hideUserList(){
+    document.getElementById('user-list').style.display='none'
+}
+
+function showLeaveConfirm(){
+    document.getElementById('user-list').style.display='none'
+    document.getElementById('leave-confirm').style.display='flex'
+}
+
+function hideLeaveConfirm(){
+    document.getElementById('leave-confirm').style.display='none'
 }
 
 function createFile(){
