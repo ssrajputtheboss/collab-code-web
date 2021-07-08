@@ -22,7 +22,7 @@
 <body class="h-screen bg-gray-900">
     <header class="text-yellow-500 font-bold items-center text-center justify-end text-xl md:text-4xl h-20 border-b-4 border-white-900 border-none">
         Collab<span class="text-red-500">&lt;</span>Code<span class="text-red-500">/&gt;</span>
-        <div id="options" style="height: fit-content;width: fit-content;display: block;display: none;" class="top-0 md:text-sm right-0 mr-5 mt-5 fixed z-30">
+        <div id="options" style="height: fit-content;width: fit-content;display: block;display: none;" class="top-0 text-sm md:text-sm right-0 mr-5 mt-5 fixed z-30">
             <div class="flex flex-row justify-end p-2 items-center">
                 <button type="button" class="m-2 p-2 bg-green-500 rounded-lg" onclick="showUserList()">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="blue">
@@ -41,7 +41,7 @@
                 </button>
             </div>
             <div style="display: none;" id="leave-confirm" class="bg-green-500 flex flex-col p-2 justify-start items-start rounded-lg">
-                <label class="text-red-600 text-md">If you are admin all others users will be disconnected once you leave room</label>
+                <label class="text-red-600 text-md bg-green-700">If you are admin all others users will be disconnected once you leave room</label>
                 <div class="flex flex-row">
                     <button onclick="leave()" class="m-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                         Leave
@@ -88,10 +88,10 @@
                 Run
             </button>
             <label class="text-white text-md" >Input</label>
-            <textarea class="w-full text-white h-48 p-4" id="stdin"></textarea>
+            <textarea class="bg-black w-full text-white h-48 p-4" id="stdin"></textarea>
             <label class="text-white text-md" >Output</label>
             <p class="text-white text-sm" id="exit-code"></p>
-            <textarea class="w-full text-white h-48 p-4" id="stdout" disabled></textarea>
+            <textarea class="bg-black w-full text-white h-48 p-4" id="stdout" disabled></textarea>
         </div>
     </div>
     <!--home-->

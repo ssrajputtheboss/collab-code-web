@@ -33,7 +33,7 @@ function createUserList(){
         let p = document.createElement('p')
         p.setAttribute('id','user'+i)
         p.innerHTML=e 
-        p.className='p-2 text-blue-500 w-full'
+        p.className='p-2 text-white text-green-700 w-full'
         parent.appendChild(p)
     })
 }
