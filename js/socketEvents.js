@@ -68,7 +68,7 @@ function setListners(){
     socket.on('leave-res',async(data)=>{
         const {message}=data
         if(message === 'success'){
-            window.open('/','_self')
+            window.open('/collab-code-web','_self')
         }
     })
 
