@@ -9,6 +9,13 @@ let newFile=''
 let isEditorOpen=false
 let lastOutput=''
 
+socket.on('userlist',(data)=>{
+    const {users} = data
+    userList = users
+    clearUserList()
+    createUserList()
+})
+
 function log(){
     console.log({
         fileList : fileList,

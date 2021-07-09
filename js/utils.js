@@ -67,7 +67,7 @@ function setTabs(){
 function changeTab(i,update){
     if(i === activeIndex)return;
     if(activeIndex>=0){
-        if(update)
+        if(update){}
             //updateFile()
         disableTab(activeIndex)
     }
