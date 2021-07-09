@@ -170,6 +170,7 @@ function createFile(){
 }
 
 function updateFile(){
+    document.getElementById('save-button').innerHTML = 'Saving...'
     socket.emit('updatefile' , {
         token : token ,
         roomName : roomname ,
