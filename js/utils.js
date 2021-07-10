@@ -4,7 +4,7 @@ function addTab(name,index){
     tab.onclick = ()=>changeTab(index,true)
     tab.setAttribute('id','tab'+index)
     tab.style.width='fit-content'
-    tab.className="flex flex-row justify-between items-center p-2" + index===activeIndex?' bg-blue-100':' bg-indigo-300'
+    tab.className="flex flex-row justify-between items-center p-2 " + (index===activeIndex?'bg-blue-100':'bg-indigo-300')
     let title = document.createElement('p')
     title.className="text-blue-900 text-xl"
     title.innerHTML=name
@@ -65,7 +65,7 @@ function setTabs(){
 }
 
 function changeTab(i,update){
-    if(i === activeIndex)return;
+    if(i === activeIndex)return
     if(activeIndex>=0){
         if(update){}
             //updateFile()

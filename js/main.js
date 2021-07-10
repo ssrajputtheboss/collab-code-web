@@ -9,13 +9,6 @@ let newFile=''
 let isEditorOpen=false
 let lastOutput=''
 
-socket.on('userlist',(data)=>{
-    const {users} = data
-    userList = users
-    clearUserList()
-    createUserList()
-})
-
 function log(){
     console.log({
         fileList : fileList,
@@ -25,6 +18,20 @@ function log(){
         roomname:roomname,
         newFile:newFile
     })
+}
+
+function logger(){
+    let i=0
+    while(true){
+        try{
+            const ele  = document.getElementById('tab'+i)
+            console.log(ele)
+            if(!ele)break
+            ++i
+        }catch(err){
+            break
+        }
+    }
 }
 
 window.onbeforeunload = function(e){

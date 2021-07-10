@@ -35,6 +35,8 @@ function login(){
                 token = jwt
                 roomname=authData.roomname
                 userList.push(authData.username)
+                clearUserList()
+                createUserList()
                 hideLogin()
                 hideEditor()
                 setListners()
@@ -73,14 +75,16 @@ function join(){
                 roomname=authData.roomname
                 userList = users
                 fileList=files
-                activeIndex=files.length===0?-1:0
+                activeIndex=(files.length===0)?-1:0
                 if(activeIndex>=0){
                     setTabs()
                     isEditorOpen=true
                     showEditor()
+                    editor.setValue(fileList[activeIndex].content)
                 }
                 hideLogin()
                 showOptions()
+                createUserList()
                 setListners()
             }else
             document.getElementById('err').innerHTML='Server response: '+message

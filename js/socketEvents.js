@@ -61,6 +61,7 @@ function setListners(){
                 document.getElementById('exit-code').innerHTML = `process exited with error or timeout ${result.stderr}`
             }
         }else{
+            lastOutput=''
             document.getElementById('exit-code').innerHTML = message
             document.getElementById('stdout').value =''
         }
@@ -71,9 +72,5 @@ function setListners(){
         if(message === 'success'){
             window.open('/collab-code-web','_self')
         }
-    })
-
-    socket.on('delete-res',(data)=>{
-        console.log(data)
     })
 }
