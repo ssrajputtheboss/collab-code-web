@@ -18,8 +18,9 @@ function setListners(){
         }
     })
     socket.on('createfile-res',(data)=>{
-        const { message , files } = data
+        const { message } = data
         if(message === 'success'){
+            const {files} = data
             if(activeIndex>=0)
                 updateFile()
             fileList = files
@@ -30,7 +31,8 @@ function setListners(){
             removeAllTabs()
             setTabs()
             changeTab(files.length-1,false)
-        }
+        }else
+            document.getElementById('file-err').innerHTML = 'Server response:'+message
     })
     socket.on('forward-res',(data)=>{
         const {message} = data

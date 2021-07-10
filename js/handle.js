@@ -125,6 +125,9 @@ function showModal(){
 }
 
 function hideModal(){
+    hideSnippets()
+    document.getElementById('file-err').innerHTML=''
+    document.getElementById('fname').value = ''
     document.getElementById('createfile').style.display= 'none'
 }
 
@@ -160,9 +163,60 @@ function hideLeaveConfirm(){
     document.getElementById('leave-confirm').style.display='none'
 }
 
-function createFile(){
-    const sname = document.getElementById('sname').value
+function fnameChange(){
     const fname = document.getElementById('fname').value
+    const ext = getExt(fname)
+    if(ext){
+        showSnippets(ext)
+    }else
+        hideSnippets()
+}
+
+function showSnippets(ext){
+    document.getElementById('s1').style.display='flex'
+    document.getElementById('s2').style.display='flex'
+    document.getElementById('image-1').setAttribute('src',`images/${ext}_default.png`)
+    document.getElementById('image-2').setAttribute('src',`images/${ext}_testcase.png`)
+}
+
+function hideSnippets(){
+    document.getElementById('r-1').checked=true
+    document.getElementById('s1').style.display='none'
+    document.getElementById('s2').style.display='none'
+}
+
+function isFile(fname){
+    if(fname.endsWith('.c')||fname.endsWith('.cpp')||fname.endsWith('.java')||fname.endsWith('.py')||fname.endsWith('.txt'))
+        return true
+    return false
+}
+
+function getExt(fname){
+    if(fname.endsWith('.c'))
+        return 'c'
+    else if(fname.endsWith('.cpp'))
+        return 'cpp'
+    else if(fname.endsWith('.java'))
+        return 'java'
+    else if(fname.endsWith('.py'))
+        return 'py'
+    return ''
+}
+
+function createFile(){
+    const fname = document.getElementById('fname').value
+    if(!isFile(fname)){
+        document.getElementById('file-err').innerHTML='Invalid file extention'
+        return
+    }
+    let sname=''
+    document.getElementsByName('sname').forEach((e)=>{
+        if(e.checked)
+        sname=e.value
+    }) 
+    if(sname && !fname.endsWith('.txt')){
+        sname += ('.'+getExt(fname))
+    }
     newFile=fname
     socket.emit('createfile',{
         token : token ,

@@ -105,8 +105,21 @@
         </div>
         <div style="display: none;top:0%;" id="createfile" class="z-10 mt-0 fixed w-full h-full flex justify-center items-center">
             <div style="max-width: 450px;height: fit-content;" class="z-50 border-4 border-blue-900 p-4 shadow-2xl bg-blue-900 rounded flex flex-col items-start">
-                <input class="border-4 p-2 rounded border-yellow-400 m-2 h-12 text-white w-full bg-gray-900" type="text" id="fname" placeholder="FileName" />
-                <input class="border-4 p-2 rounded border-yellow-400 m-2 h-12 text-white w-full bg-gray-900" type="text" id="sname" placeholder="SnippetName" />
+                <input oninput="fnameChange()" class="border-4 p-2 rounded border-yellow-400 m-2 h-12 text-white w-full bg-gray-900" type="text" id="fname" placeholder="FileName" />
+                <label id="file-err" class="text-red-500 bg-blue-300"></label>
+                <div class="flex flex-col justify-start items-start">
+                    <div>
+                        <input id="r-1" type="radio" name="sname" value="" checked/> Empty File
+                    </div>
+                    <div id="s1" style="display: none;" class="flex flex-row justify-between">
+                        <input type="radio" name="sname" value="default"/>
+                        <img id="image-1" ></img>
+                    </div>
+                    <div id="s2" style="display: none;" class="flex flex-row justify-between">
+                        <input type="radio" name="sname" value="testcase"/>
+                        <img id="image-2" ></img>
+                    </div>
+                </div>
                 <div class="w-full flex justify-around items-center">
                     <button onclick="createFile()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                         Create
