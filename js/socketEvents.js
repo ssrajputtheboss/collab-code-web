@@ -50,20 +50,27 @@ function setListners(){
         const {message} = data 
         if(message === 'success'){
             const {result} = data 
+            console.log(result)
             const code = result.exitCode
             if(code!==null){
                 const output=result.stdout+result.stderr
                 lastOutput = output
+                document.getElementById('cpu-usage').innerHTML = `CPU Usage: ${result.cpuUsage}`
+                document.getElementById('memory-usage').innerHTML = `Memory Usage: ${result.memoryUsage}`
                 document.getElementById('stdout').value = output
                 document.getElementById('exit-code').innerHTML = `process exited with exit code ${code}`
             }else{
                 const output=result.stdout
                 lastOutput = output
+                document.getElementById('cpu-usage').innerHTML = `CPU Usage: ${result.cpuUsage}`
+                document.getElementById('memory-usage').innerHTML = `Memory Usage: ${result.memoryUsage}`
                 document.getElementById('stdout').value = output
                 document.getElementById('exit-code').innerHTML = `process exited with error or timeout ${result.stderr}`
             }
         }else{
             lastOutput=''
+            document.getElementById('cpu-usage').innerHTML = ''
+                document.getElementById('memory-usage').innerHTML = ''
             document.getElementById('exit-code').innerHTML = message
             document.getElementById('stdout').value =''
         }
