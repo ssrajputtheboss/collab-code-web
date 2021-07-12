@@ -51,11 +51,11 @@ function clearUserList(){
 }
 
 function disableTab(index){
-    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
+    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-blue-100'
 }
 
 function enableTab(index){
-    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-blue-100'
+    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
 }
 
 function setTabs(){

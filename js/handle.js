@@ -1,6 +1,6 @@
-function validate({username,roomname,password,token}){
-    if( /.+\..+\..+/i.exec(token) === null )
-        return 'Invalid Token'
+function validate({username,roomname,password}){
+    //if( /.+\..+\..+/i.exec(token) === null )
+        //return 'Invalid Token'
     if(username.length < 4) 
         return 'Username must be of length 4 atleast'
     if(roomname.length < 6)
@@ -15,14 +15,14 @@ function login(){
         roomname : document.getElementById('roomname').value,
         username : document.getElementById('username').value,
         password : document.getElementById('password').value,
-        token : document.getElementById('token').value
+        //token : document.getElementById('token').value
     }
     const msg = validate(authData)
     if(msg == 'success'){
         document.getElementById('err').innerHTML = ''
-        socket = io(HOST,{
+        /*socket = io(HOST,{
             extraHeaders : {authorization : authData.token}
-        })
+        })*/
         socket.emit('create' , {
             roomName : authData.roomname,
             userName : authData.username,
@@ -54,14 +54,14 @@ function join(){
         roomname : document.getElementById('roomname').value,
         username : document.getElementById('username').value,
         password : document.getElementById('password').value,
-        token : document.getElementById('token').value
+        //token : document.getElementById('token').value
     }
     const msg = validate(authData)
     if(msg == 'success'){
         document.getElementById('err').innerHTML = ''
-        socket = io(HOST,{
+        /*socket = io(HOST,{
             extraHeaders : {authorization : authData.token}
-        })
+        })*/
         socket.emit('join' , {
             roomName : authData.roomname,
             userName : authData.username,
