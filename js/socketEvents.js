@@ -7,7 +7,12 @@ function setListners(){
     })
     socket.on('updatefile-res',(data)=>{
         const {message} = data
-        document.getElementById('save-button').innerHTML = 'Save'
+        const button = document.getElementById('save-button');
+        if(button.innerHTML === 'Saving...'){
+            document.getElementById('save-button').innerHTML = 'Save'
+            return
+            //no need to change editor if user is a sender
+        }
         if(message === 'success'){
             const {fname,content} = data
             if(fileList.findIndex(f=>f.fname===fname) === activeIndex)
