@@ -69,6 +69,7 @@ function join(){
         })
         socket.on('join-res',(data)=>{
             const {message} = data
+            log()
             if(message === 'success'){
                 const {jwt , files , users} = data
                 token = jwt
@@ -76,7 +77,7 @@ function join(){
                 userList = users
                 fileList=files
                 activeIndex=(files.length===0)?-1:0
-                if(activeIndex>=0){
+                if(files.length){
                     setTabs()
                     isEditorOpen=true
                     showEditor()
