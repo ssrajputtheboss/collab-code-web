@@ -81,7 +81,8 @@ function join(){
                     isEditorOpen=true
                     showEditor()
                     editor.setValue(fileList[activeIndex].content)
-                }
+                }else
+                    hideEditor()
                 hideLogin()
                 showOptions()
                 createUserList()
