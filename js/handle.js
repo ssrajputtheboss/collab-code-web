@@ -69,7 +69,6 @@ function join(){
         })
         socket.on('join-res',(data)=>{
             const {message} = data
-            log()
             if(message === 'success'){
                 const {jwt , files , users} = data
                 token = jwt
