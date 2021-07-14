@@ -9,7 +9,8 @@ function setListners(){
         const {message} = data
         const button = document.getElementById('save-button');
         if(button.innerHTML === 'Saving...'){
-            document.getElementById('save-button').innerHTML = 'Save'
+            document.getElementById('save-text').innerHTML = 'Save'
+            document.getElementById('save-load').style.display = 'none'
             return
             //no need to change editor if user is a sender
         }
@@ -53,6 +54,8 @@ function setListners(){
     })
     socket.on('run-res',(data)=>{
         const {message} = data 
+        document.getElementById('run-text').innerHTML = 'Run'
+        document.getElementById('run-load').style.display = 'none'
         if(message === 'success'){
             const {result} = data 
             console.log(result)

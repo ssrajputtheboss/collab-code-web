@@ -229,7 +229,8 @@ function createFile(){
 }
 
 function updateFile(){
-    document.getElementById('save-button').innerHTML = 'Saving...'
+    document.getElementById('save-text').innerHTML = 'Saving'
+    document.getElementById('save-load').style.display = 'block'
     socket.emit('updatefile' , {
         token : token ,
         roomName : roomname ,
@@ -239,6 +240,9 @@ function updateFile(){
 }
 
 function runCode(){
+    if(document.getElementById('save-text') === 'Running')return alert('Already running a program try later!')
+    document.getElementById('run-text').innerHTML = 'Running'
+    document.getElementById('run-load').style.display = 'block'
     socket.emit('run' , {
         token : token ,
         roomName : roomname ,
