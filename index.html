@@ -84,8 +84,8 @@
             </div>
             <label class="text-white text-md">File to be executed:</label>
             <p class="text-white text-sm" id="file-to-run"></p>
-            <button onclick="runCode()" type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                <p id="run-text">Run</p>
+            <button onclick="runCode()" type="button" class="flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                <p id="run-text" class="mx-2">Run</p>
                 <div style="display: none;" id="run-load" class="loader"></div>
             </button>
             <label class="text-white text-md" >Input</label>
@@ -138,8 +138,8 @@
         <div id="editor" class="w-full h-full">
             <textarea id="codeeditor">
             </textarea>
-            <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-2 border-white-900 rounded" onclick="updateFile()">
-                <p id="save-text">Save</p>
+            <button type="button" class="flex items-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-2 border-white-900 rounded" onclick="updateFile()">
+                <p id="save-text" class="mx-2">Save</p>
                 <div style="display: none;" id="save-load" class="loader"></div>
             </button>
             <button type="button" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 border-2 border-white-900 rounded" onclick="showCodeRunnerModal()">Execute</button>
