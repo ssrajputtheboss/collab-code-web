@@ -240,7 +240,7 @@ function updateFile(){
 }
 
 function runCode(){
-    if(document.getElementById('save-text') === 'Running')return alert('Already running a program try later!')
+    if(document.getElementById('run-text') === 'Running')return alert('Already running a program try later!')
     document.getElementById('run-text').innerHTML = 'Running'
     document.getElementById('run-load').style.display = 'block'
     socket.emit('run' , {

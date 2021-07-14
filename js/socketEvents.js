@@ -9,7 +9,7 @@ function setListners(){
         const {message} = data
         const p = document.getElementById('save-text');
         if(p.innerHTML === 'Saving'){
-            document.getElementById('save-text').innerHTML = 'Save'
+            p.innerHTML = 'Save'
             document.getElementById('save-load').style.display = 'none'
             return
             //no need to change editor if user is a sender
@@ -58,7 +58,6 @@ function setListners(){
         document.getElementById('run-load').style.display = 'none'
         if(message === 'success'){
             const {result} = data 
-            console.log(result)
             const code = result.exitCode
             if(code!==null){
                 const output=result.stdout+result.stderr
