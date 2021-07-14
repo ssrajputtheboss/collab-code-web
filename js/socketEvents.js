@@ -7,8 +7,8 @@ function setListners(){
     })
     socket.on('updatefile-res',(data)=>{
         const {message} = data
-        const button = document.getElementById('save-button');
-        if(button.innerHTML === 'Saving'){
+        const p = document.getElementById('save-text');
+        if(p.innerHTML === 'Saving'){
             document.getElementById('save-text').innerHTML = 'Save'
             document.getElementById('save-load').style.display = 'none'
             return
