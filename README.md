@@ -4,4 +4,4 @@ Collab-code web a real-time collaborative coding platform for competitive progra
 
 ## Screenshot ##
 
-![snapshot](https://ssrajputtheboss.github.io/collab-code-web/images/web.png) 
+![snapshot](https://ssrajputtheboss.github.io/collab-code-web/images/demo.mp4) 
