@@ -123,6 +123,7 @@ function hideEditor(){
 
 function showModal(){
     document.getElementById('createfile').style.display= 'flex'
+    document.getElementById('fname').focus()
 }
 
 function hideModal(){
