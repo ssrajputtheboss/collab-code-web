@@ -4,7 +4,7 @@ function addTab(name,index){
     tab.onclick = ()=>changeTab(index,true)
     tab.setAttribute('id','tab'+index)
     tab.style.width='fit-content'
-    tab.className="flex flex-row justify-between items-center p-2 " + (index===activeIndex?'bg-indigo-300':'bg-blue-100')
+    tab.className="flex flex-row justify-between items-center p-2 " + (index===activeIndex?'bg-blue-100':'bg-indigo-300')
     let title = document.createElement('p')
     title.className="text-blue-900 text-xl"
     title.innerHTML=name
@@ -51,11 +51,11 @@ function clearUserList(){
 }
 
 function disableTab(index){
-    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-blue-100'
+    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
 }
 
 function enableTab(index){
-    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-indigo-300'
+    document.getElementById('tab'+index).className = 'flex flex-row justify-between items-center p-2 bg-blue-100'
 }
 
 function setTabs(){
