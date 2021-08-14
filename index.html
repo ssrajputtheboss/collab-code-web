@@ -22,7 +22,7 @@
 <body class="h-screen bg-gray-900">
     <header class="text-yellow-500 font-bold items-center text-center justify-end text-xl md:text-4xl h-20 border-b-4 border-white-900 border-none">
         Collab<span class="text-red-500">&lt;</span>Code<span class="text-red-500">/&gt;</span>
-        <marquee class="text-green-500 w-52">A collaboration coding platform</marquee>
+        <marquee class="text-green-500 w-52">A collaboration coding platform the website is in maintainance now</marquee>
         <div id="options" style="height: fit-content;width: fit-content;display: block;display: none;" class="top-0 text-sm md:text-sm right-0 mr-5 mt-5 fixed z-30">
             <div class="flex flex-row justify-end p-2 items-center">
                 <button type="button" class="m-2 p-2 bg-green-500 rounded-lg" onclick="showUserList()">
@@ -152,11 +152,26 @@
         })
         editor.setSize("100%","80%")
         editor.setValue('')
+        var timer
+        function debounceDataTransferer(){
+            if(timer)
+                clearTimeout(timer)
+            timer = setTimeout(()=>{
+                socket.emit('forward',{
+                        token : token ,
+                        roomName : roomname ,
+                        fname : fileList[activeIndex].fname,
+                        change : editor.getValue()
+                    })
+                console.log('emitted response')
+                timer = null;
+            },2000)
+        }
         editor.on(
             'change',
             (editor,change)=>{
                 if(change.origin !== 'setValue' && change.origin !== 'replaceRange'){
-                    if(change.origin.includes("undo") || change.origin.includes("delete") || change.origin.includes("paste")){
+                    /*if(change.origin.includes("undo") || change.origin.includes("delete") || change.origin.includes("paste")){
                         //replace whole text in reciever's editor
                         change.replaced = editor.getValue()
                     }
@@ -165,7 +180,8 @@
                         roomName : roomname ,
                         fname : fileList[activeIndex].fname,
                         change : change
-                    })
+                    })*/
+                    debounceDataTransferer()
                 }
             }
         )

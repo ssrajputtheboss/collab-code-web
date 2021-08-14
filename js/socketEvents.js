@@ -49,10 +49,11 @@ function setListners(){
         if(message === 'success'){
             const {fname,change} = data
             if(fileList.findIndex(f=>f.fname===fname) === activeIndex){
-                if(change.origin.includes("undo") ||change.origin.includes("delete") || change.origin.includes("paste")){
+                editor.setValue(change)
+                /*if(change.origin.includes("undo") ||change.origin.includes("delete") || change.origin.includes("paste")){
                     editor.setValue(change.replaced)
                 }
-                editor.replaceRange(change.text.join('\n'),change.from,change.to,'replaceRange')
+                editor.replaceRange(change.text.join('\n'),change.from,change.to,'replaceRange')*/
             }
         }
     })
