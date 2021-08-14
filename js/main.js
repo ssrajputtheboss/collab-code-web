@@ -8,6 +8,8 @@ let roomname=''
 let newFile=''
 let isEditorOpen=false
 let lastOutput=''
+let me = ''
+let isDisconnected = false
 
 function log(){
     console.log({

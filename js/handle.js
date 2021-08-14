@@ -19,6 +19,7 @@ function login(){
     }
     const msg = validate(authData)
     if(msg == 'success'){
+        me = authData.username
         document.getElementById('err').innerHTML = ''
         /*socket = io(HOST,{
             extraHeaders : {authorization : authData.token}

@@ -1,10 +1,12 @@
 function setListners(){
+
     socket.on('userlist',(data)=>{
         const {users} = data
         userList = users
         clearUserList()
         createUserList()
     })
+
     socket.on('updatefile-res',(data)=>{
         const {message} = data
         const p = document.getElementById('save-text');
@@ -23,6 +25,7 @@ function setListners(){
             })
         }
     })
+
     socket.on('createfile-res',(data)=>{
         const { message } = data
         if(message === 'success'){
@@ -40,6 +43,7 @@ function setListners(){
         }else
             document.getElementById('file-err').innerHTML = 'Server response:'+message
     })
+
     socket.on('forward-res',(data)=>{
         const {message} = data
         if(message === 'success'){
@@ -52,6 +56,7 @@ function setListners(){
             }
         }
     })
+
     socket.on('run-res',(data)=>{
         const {message} = data 
         document.getElementById('run-text').innerHTML = 'Run'
