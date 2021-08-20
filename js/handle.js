@@ -24,12 +24,14 @@ function login(){
         /*socket = io(HOST,{
             extraHeaders : {authorization : authData.token}
         })*/
+        document.getElementById('create-load').style.display = 'block'
         socket.emit('create' , {
             roomName : authData.roomname,
             userName : authData.username,
             password : authData.password
         })
         socket.on('create-res',(data)=>{
+            document.getElementById('create-load').style.display = 'none'
             const {message} = data
             if(message === 'success'){
                 const {jwt} = data
@@ -64,12 +66,14 @@ function join(){
         /*socket = io(HOST,{
             extraHeaders : {authorization : authData.token}
         })*/
+        document.getElementById('join-load').style.display = 'block'
         socket.emit('join' , {
             roomName : authData.roomname,
             userName : authData.username,
             password : authData.password
         })
         socket.on('join-res',(data)=>{
+            document.getElementById('join-load').style.display = 'none'
             const {message} = data
             if(message === 'success'){
                 const {jwt , files , users} = data
