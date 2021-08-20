@@ -57,6 +57,7 @@ function join(){
         password : document.getElementById('password').value,
         //token : document.getElementById('token').value
     }
+    me = authData.username
     const msg = validate(authData)
     if(msg == 'success'){
         document.getElementById('err').innerHTML = ''
@@ -99,7 +100,8 @@ function join(){
 function leave(){
     socket.emit('leave' , {
         roomName : roomname,
-        token : token
+        token : token,
+        userName: me
     })
 }
 

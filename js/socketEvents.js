@@ -1,5 +1,23 @@
 function setListners(){
 
+    socket.on('disconnect',()=>{
+        isDisconnected = true
+    })
+
+    socket.on('connection',()=>{
+        if(isDisconnected){
+            isDisconnected=false
+            socket.emit('rejoin',{
+                token : token ,
+                roomName : roomname ,
+                userName: me
+            })
+        }
+    })
+
+    socket.on('rejoin-res',(data)=>{
+    })
+
     socket.on('userlist',(data)=>{
         const {users} = data
         userList = users
@@ -9,7 +27,7 @@ function setListners(){
 
     socket.on('updatefile-res',(data)=>{
         const {message} = data
-        const p = document.getElementById('save-text');
+        const p = document.getElementById('save-text')
         if(p.innerHTML === 'Saving'){
             p.innerHTML = 'Save'
             document.getElementById('save-load').style.display = 'none'
