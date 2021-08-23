@@ -6,7 +6,7 @@ function setListners(){
         setDisconnectedStatus()
     })
 
-    socket.on('connection',()=>{
+    socket.on('connect',()=>{
         logger.log('connected')
         if(isDisconnected){
             setConnectingStatus()
