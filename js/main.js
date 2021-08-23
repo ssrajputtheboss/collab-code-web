@@ -11,7 +11,7 @@ let lastOutput=''
 let me = ''
 let isDisconnected = false
 const logger = new Logger()
-logger.isActive = true
+logger.isActive = false
 
 function log(){
     console.log({

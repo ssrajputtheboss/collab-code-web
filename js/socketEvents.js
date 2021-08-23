@@ -6,7 +6,7 @@ function setListners(){
         setDisconnectedStatus()
     })
 
-    socket.on('connect',()=>{
+    socket.on('connection',()=>{
         logger.log('connected')
         if(isDisconnected){
             setConnectingStatus()
@@ -16,6 +16,12 @@ function setListners(){
                 roomName : roomname ,
                 userName: me
             })
+        }
+    })
+
+    socket.onAny((eventName,data)=>{
+        if(eventName!=='disconnected'){
+            setConnectedStatus()
         }
     })
 
