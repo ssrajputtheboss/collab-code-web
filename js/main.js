@@ -10,6 +10,8 @@ let isEditorOpen=false
 let lastOutput=''
 let me = ''
 let isDisconnected = false
+const logger = new Logger()
+logger.isActive = true
 
 function log(){
     console.log({
@@ -22,7 +24,7 @@ function log(){
     })
 }
 
-function logger(){
+function tabLogger(){
     let i=0
     while(true){
         try{

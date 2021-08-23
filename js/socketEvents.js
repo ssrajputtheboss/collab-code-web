@@ -1,11 +1,13 @@
 function setListners(){
 
     socket.on('disconnect',()=>{
+        logger.log('disconnected')
         isDisconnected = true
         setDisconnectedStatus()
     })
 
     socket.on('connection',()=>{
+        logger.log('connected')
         if(isDisconnected){
             setConnectingStatus()
             isDisconnected=false
@@ -18,6 +20,7 @@ function setListners(){
     })
 
     socket.on('rejoin-res',(data)=>{
+        logger.log('rejoined')
         setConnectedStatus()
     })
 
