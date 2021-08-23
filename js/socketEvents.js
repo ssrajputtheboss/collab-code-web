@@ -2,10 +2,12 @@ function setListners(){
 
     socket.on('disconnect',()=>{
         isDisconnected = true
+        setDisconnectedStatus()
     })
 
     socket.on('connection',()=>{
         if(isDisconnected){
+            setConnectingStatus()
             isDisconnected=false
             socket.emit('rejoin',{
                 token : token ,
@@ -16,6 +18,7 @@ function setListners(){
     })
 
     socket.on('rejoin-res',(data)=>{
+        setConnectedStatus()
     })
 
     socket.on('userlist',(data)=>{
