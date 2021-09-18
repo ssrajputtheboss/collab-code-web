@@ -17,3 +17,7 @@ div > input{
     border: none;
     outline: none;
 }
+
+.floating-tab-button:hover ~ .tabs{
+    display: flex;
+}
