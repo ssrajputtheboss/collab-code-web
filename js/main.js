@@ -2,7 +2,7 @@ const HOST = 'http://localhost:4004/';
 let socket = io(HOST, {
   extraHeaders: {
     authorization:
-      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOiJhcGkiLCJpYXQiOjE2MjYwNzM4MDB9.B48PU9yDI9M4TifjsTpin9A_6CE8u7n6QJn6d8O0Qf8'
+      'eeyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGkiOiJhcGkiLCJpYXQiOjE2NTY5MDk3MTcsImV4cCI6MTY1NzA4MjUxN30.7lDpIDlwkPCCpAzsx2AsWRXD22gDxMBLAGTJbc7v1fc'
   }
 });
 let fileList = [];
