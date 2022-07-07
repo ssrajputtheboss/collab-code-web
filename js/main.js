@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:4004/';
+const HOST = 'https://collab-code-api.herokuapp.com/';
 let socket = io(HOST, {
   extraHeaders: {
     authorization:
