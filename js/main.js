@@ -55,7 +55,8 @@ function run(code, runtime , input){
     fetch(HOST + '/run', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authentication' : "Bearer " + authToken
     },
     body: JSON.stringify({
       script : code , 
