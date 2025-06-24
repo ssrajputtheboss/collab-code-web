@@ -33,15 +33,10 @@ function login(){
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({})
-  }).then(res => {
-    if(res.status == 200){
-      let body = JSON.parse(res.body)
+  }).then(res=>res.json()).then(body => {
       authToken = body.token;
       hideLogin()
       showEditor()
-    }else{
-      // service likely unavailable
-    }
   }).catch(err => {
     console.log(err)
   })
@@ -49,25 +44,27 @@ function login(){
 }
 
 function run(code, runtime , input){
-  if (runtime != "python3" || runtime != "c++"){
+  if (runtime != "python3" && runtime != "c++"){
     console.log('runtime not supported')
   }else{
     fetch(HOST + '/run', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authentication' : "Bearer " + authToken
+      'Authorization' : "Bearer " + authToken
     },
     body: JSON.stringify({
+      file: "test",
       script : code , 
       runtime ,
-      input 
+      input ,
+      javaClassName:""
     })
-  }).then(res => {
-    if(res.status == 200){
-      runResponse = res.body
-    }
-  })
+  }).then(res=>res.text()).then(body => {
+      runResponse = body
+      document.getElementById('stdout').value = runResponse;
+      console.log(runResponse)
+  }).catch(e=>console.log(e))
   }
 }
 
@@ -77,6 +74,7 @@ function throttledRunner(){
   let code = editor.getValue(),
     runtime = document.getElementById('runtime').value,
     input = document.getElementById('stdin').value;
+    console.log(code , runtime, input)
   run(code , runtime , input)
   running = false;
 }
@@ -90,3 +88,4 @@ function throttledRunner(){
 //     e.preventDefault();
 //   }
 // };
+

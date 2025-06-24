@@ -145,7 +145,7 @@ function hideCodeRunnerModal() {
 function showCodeRunnerModal() {
   // document.getElementById('file-to-run').innerHTML = fileList[activeIndex].fname;
 
-  document.getElementById('stdout').value = 'test';
+  document.getElementById('stdout').value = runResponse;
   document.getElementById('runner').style.display = 'flex';
 }
 
