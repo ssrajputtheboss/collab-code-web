@@ -3,7 +3,7 @@
 const HOST = 'https://codeio.xuitz.solutions/v1';
 let authToken = null;
 let runResponse = '';
-let running = false;
+var running = false;
 
 
 function setLanguageEditor() {
@@ -47,6 +47,7 @@ function run(code, runtime , input){
   if (runtime != "python3" && runtime != "c++"){
     console.log('runtime not supported')
   }else{
+    running = true;
     fetch(HOST + '/run', {
     method: 'POST',
     headers: {
@@ -64,19 +65,21 @@ function run(code, runtime , input){
       runResponse = body
       document.getElementById('stdout').value = runResponse;
       console.log(runResponse)
-  }).catch(e=>console.log(e))
+  }).catch(e=>console.log(e)).finally(()=>{
+    running = false
+  })
   }
 }
 
 function throttledRunner(){
-  if(running)alert('a request is already running!')
-  running = true;
+  console.log(running)
+  if(running)return alert('a request is already running!')
+
   let code = editor.getValue(),
     runtime = document.getElementById('runtime').value,
     input = document.getElementById('stdin').value;
     console.log(code , runtime, input)
   run(code , runtime , input)
-  running = false;
 }
 
 // window.onbeforeunload = function (e) {
