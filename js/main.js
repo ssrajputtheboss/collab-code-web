@@ -25,6 +25,7 @@ function setLanguageEditor() {
 
 
 function login(){
+  document.getElementById("testlogin").disabled = true;
 
   fetch(HOST + '/testlogin' , {
     method: 'POST',
@@ -39,6 +40,8 @@ function login(){
       showEditor()
   }).catch(err => {
     console.log(err)
+  }).finally(() => {
+    document.getElementById("testlogin").disabled = false;
   })
 
 }
